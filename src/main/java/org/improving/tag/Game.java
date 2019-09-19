@@ -1,19 +1,24 @@
 package org.improving.tag;
 
-import org.improving.tag.commands.DanceCommand;
-import org.improving.tag.commands.InventoryCommand;
-import org.improving.tag.commands.JumpCommand;
-import org.improving.tag.commands.LookCommand;
+import org.improving.tag.commands.*;
 
 import javax.naming.Name;
 import java.util.Date;
 import java.util.Scanner;
 
 public class Game {
+    private BaseEmoteCommand[] commands;
     private Date startTime;
     private Date endTime;
 
-
+    // constructors
+    public Game () {
+        commands = new BaseEmoteCommand[] {
+                new LookCommand(),
+                new DanceCommand(),
+                new JumpCommand(),
+                new InventoryCommand()};
+    }
 
     public Date getStartTime() { return startTime; }
     private void setStartTime (Date startTime) {
@@ -32,31 +37,32 @@ public class Game {
         this.setStartTime(new Date());
 
         boolean loop = true;
+
         while(loop) {
             System.out.print("> ");
             String input = scanner.nextLine().trim();
-            LookCommand lCmd = new LookCommand();
-            DanceCommand dCmd = new DanceCommand();
-            JumpCommand jCmd = new JumpCommand();
-            InventoryCommand iCmd = new InventoryCommand();
-
-            if (lCmd.isValid(input)) {
-                lCmd.execute(input);
+            BaseEmoteCommand validCommand = getValidCommand(input);
+            if (null !=validCommand) {
+                validCommand.execute(input);
             }
-            else if (iCmd.isValid(input)) {
-                iCmd.execute(input);
-            } else if (dCmd.isValid(input)) {
-                dCmd.execute(input);
-            } else if (jCmd.isValid(input)) {
-                jCmd.execute(input);
-            } else if (input.equals("exit")) {
-                System.out.println("Goodbye.");
-                loop = false;
-            } else {
-                System.out.println("Huh? I didn't quite get that silly girl.");
+               else if (input.equals("exit")) {
+                    System.out.println("Goodbye.");
+                    loop = false;
+                } else {
+                    System.out.println("Huh? I didn't quite get that silly girl.");
+                }
+            }
+        this.setEndTime(new Date());
+        }
+
+    private BaseEmoteCommand getValidCommand(String input) {
+        BaseEmoteCommand validCommand = null;
+        for (BaseEmoteCommand command : commands) {
+            if (command.isValid(input)) {
+                return command;
             }
         }
-        this.setEndTime(new Date());
+        return null;
     }
 }
 
