@@ -7,13 +7,13 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Game {
-    private BaseEmoteCommand[] commands;
+    private Command[] commands;
     private Date startTime;
     private Date endTime;
 
     // constructors
     public Game () {
-        commands = new BaseEmoteCommand[] {
+        commands = new Command[] {
                 new LookCommand(),
                 new DanceCommand(),
                 new JumpCommand(),
@@ -41,7 +41,7 @@ public class Game {
         while(loop) {
             System.out.print("> ");
             String input = scanner.nextLine().trim();
-            BaseEmoteCommand validCommand = getValidCommand(input);
+            Command validCommand = getValidCommand(input);
             if (null !=validCommand) {
                 validCommand.execute(input);
             }
@@ -55,9 +55,9 @@ public class Game {
         this.setEndTime(new Date());
         }
 
-    private BaseEmoteCommand getValidCommand(String input) {
-        BaseEmoteCommand validCommand = null;
-        for (BaseEmoteCommand command : commands) {
+    private Command getValidCommand(String input) {
+        Command validCommand = null;
+        for (Command command : commands) {
             if (command.isValid(input)) {
                 return command;
             }
