@@ -1,11 +1,12 @@
 package org.improving.tag.commands;
 
+import org.improving.tag.InputOutput;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DanceCommand extends BaseEmoteCommand {
 
-    public DanceCommand() {
-        super("dance", "You danced like a freaking superstar.");
+    public DanceCommand(InputOutput io) {
+        super("dance", "You danced like a freaking superstar.", io);
     }
 }

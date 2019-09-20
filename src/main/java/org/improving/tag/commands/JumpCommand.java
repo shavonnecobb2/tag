@@ -1,9 +1,11 @@
 package org.improving.tag.commands;
 
+import org.improving.tag.InputOutput;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JumpCommand extends BaseEmoteCommand {
 
-    public JumpCommand() { super("jump", "You jumped around like a mad man."); }
+    public JumpCommand(InputOutput io) {
+        super("jump", "You jumped around like a mad man.", io); }
 }

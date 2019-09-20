@@ -1,22 +1,27 @@
 package org.improving.tag.commands;
 
+import org.improving.tag.InputOutput;
+
 public abstract class BaseEmoteCommand implements Command {
     private String cmdText;
     private String cmdResponse;
+    private InputOutput io;
 
-// inserted constructors for Class
-    public BaseEmoteCommand(String cmdText, String cmdResponse) {
+// constructors
+    public BaseEmoteCommand(String cmdText, String cmdResponse, InputOutput io) {
         this.cmdText = cmdText;
         this.cmdResponse = cmdResponse;
+        this.io = io;
     }
 
-// inserted method for Class
+// methods
     @Override
     public boolean isValid(String input) {
-        return input.equals(cmdText);
+        return input.trim().equalsIgnoreCase(cmdText);
     }
+
     @Override
     public void execute(String input) {
-        System.out.println(cmdResponse);
+        io.displayText(cmdResponse);
     }
 }
