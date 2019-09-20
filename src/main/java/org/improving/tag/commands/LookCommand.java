@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 public class LookCommand extends BaseEmoteCommand {
 
     public LookCommand(InputOutput io) {
+
         super("look", "You look around - stop that.", io);
     }
 }
