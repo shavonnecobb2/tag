@@ -1,23 +1,21 @@
 package org.improving.tag;
 
 import org.improving.tag.commands.*;
+import org.springframework.stereotype.Component;
 
 import javax.naming.Name;
 import java.util.Date;
 import java.util.Scanner;
 
+@Component
 public class Game {
     private Command[] commands;
     private Date startTime;
     private Date endTime;
 
     // constructors
-    public Game () {
-        commands = new Command[] {
-                new LookCommand(),
-                new DanceCommand(),
-                new JumpCommand(),
-                new InventoryCommand()};
+    public Game (Command[] commands) {
+        this.commands = commands;
     }
 
     public Date getStartTime() { return startTime; }
@@ -46,10 +44,10 @@ public class Game {
                 validCommand.execute(input);
             }
                else if (input.equals("exit")) {
-                    System.out.println("Goodbye.");
+                    System.out.println("Aw.. bye!");
                     loop = false;
                 } else {
-                    System.out.println("Huh? I didn't quite get that silly girl.");
+                    System.out.println("You good? I didn't quite get that silly girl.");
                 }
             }
         this.setEndTime(new Date());
