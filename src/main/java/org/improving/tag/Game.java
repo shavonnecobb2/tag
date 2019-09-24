@@ -89,10 +89,54 @@ public class Game {
         var tmcs = new Location();
         tmcs.setName("The Mac & Cheese Shop");
 
+        var a = new Location();
+        tmcs.setName("Airport");
+
+        var tict = new Location();
+        tmcs.setName("The Ice Cream Truck");
+
+        var tmo = new Location();
+        tmcs.setName("The Mountains");
+
+        var tma = new Location();
+        tmcs.setName("The Mall");
+
+        var md = new Location();
+        tmcs.setName("Mount Doom");
+
+        var tvod = new Location();
+        tmcs.setName("The Volcano of Death");
+
+        var tr = new Location();
+        tmcs.setName("The Reef");
+
+        var tvm = new Location();
+        tmcs.setName("The Velvet Moose");
+
+
         tdh.getExits().add(new Exit("Heaven Ave", tmcs, "h", "heaven", "ave"));
         tdh.getExits().add(new Exit("The Deathly Brownie", td, "tdb", "brownie", "deathly", "the"));
         td.getExits().add(new Exit("Camel Path", ta, "cp", "camel", "path"));
-        tmcs.getExits().add(new Exit("Highway 121", ta, "121", "hwy", "hwy 121", "h121"));
+        td.getExits().add(new Exit("The Dock", a, "dock", "the", "d"));
+        td.getExits().add(new Exit("Rocky Road", tict, "rocky", "road", "rr"));
+        tmcs.getExits().add(new Exit("Highway 121", ta, "121", "hwy", "hwy 121", "h121", "highway"));
+        tmcs.getExits().add(new Exit("Paradise Rd", tr, "paradise", "rd", "road", "p road"));
+        tmcs.getExits().add(new Exit("Highway 21", tvod, "highway", "hwy", "hwy 21", "h21", "21"));
+        tvm.getExits().add(new Exit("The Front Door", ta, "front door", "front", "door"));
+        tvm.getExits().add(new Exit("The Pudding Slide", a, "pudding slide", "pudding", "slide"));
+        a.getExits().add(new Exit("Flight to the Mall", tma, "to the mall", "mall", "f to mall"));
+        a.getExits().add(new Exit("Flight 121", tmo, "121", "f121"));
+        tmo.getExits().add(new Exit("Bike Trail", tr, "bike", "b"));
+        tmo.getExits().add(new Exit("The Plane", ta, "plane", "p"));
+        tmo.getExits().add(new Exit("The Narrow Trail", md, "narrow", "narrow trail"));
+        tmo.getExits().add(new Exit("The Lava Flow", tvod, "lava", "flow", "lava flow", "lv"));
+        tr.getExits().add(new Exit("The Scenic Route", tvm, "scenic", "route", "scenic route", "sr"));
+        tr.getExits().add(new Exit("The City Walk", tma, "city", "walk", "city walk", "cw"));
+        ta.getExits().add(new Exit("Amaz-ing Moose", tvm, "amazing", "amazing moose", "moose", "am"));
+        tict.getExits().add(new Exit("Magic Portal", md, "magic", "portal", "mp"));
+        tma.getExits().add(new Exit("An Escalator of Doom", tvod, "escalator of doom", "escalator", "ed"));
+        tma.getExits().add(new Exit("Path to Doom", md, "path doom", "path", "pd"));
+        md.getExits().add(new Exit("Jump into Lava", tvod, "lava", "jump lava", "jump"));
 
         return tdh;
     }
