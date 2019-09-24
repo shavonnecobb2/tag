@@ -1,5 +1,6 @@
 package org.improving.tag.commands;
 
+import org.improving.tag.Exit;
 import org.improving.tag.Game;
 import org.improving.tag.InputOutput;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,26 @@ public class MoveCommand implements Command {
     public void execute(String input, Game game) {
         input = input.trim();
         var destination = input.substring(5);
-        io.displayText("You proceed to " + destination + ".");
+
+        Exit exit = null;
+        for (var e : game.getPlayer().getLocation().getExits()) {
+            if (e.getName().equalsIgnoreCase(destination)) {
+                exit = e;
+            } else {
+                for (var a : e.getAliases()) {
+                    if (a.equalsIgnoreCase(destination)) {
+                        exit = e;
+                        break;
+                    }
+                }
+            }
+            if (exit != null) break;
+        }
+        if (exit == null) {
+            io.displayText("Oh no - this route is unavailable!");
+            return;
+        }
+        game.getPlayer().setLocation(exit.getDestination());
+        io.displayText("You travel " + exit.getName() + ".");
     }
 }

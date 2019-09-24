@@ -7,10 +7,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SetNameCommand implements Command {
+public class SetCommand implements Command {
     private InputOutput io;
 
-    public SetNameCommand(InputOutput io) {
+    public SetCommand(InputOutput io) {
         this.io = io;
     }
 
