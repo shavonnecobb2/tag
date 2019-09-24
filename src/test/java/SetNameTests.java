@@ -1,27 +1,47 @@
 import org.improving.tag.Game;
+import org.improving.tag.Player;
 import org.improving.tag.commands.SetNameCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.mockito.Mockito.*;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 public class SetNameTests {
     SetNameCommand target;
     TestInputOutput io;
+    Game game;
 
     @BeforeEach
     public void arrange() {
         // Arrange
         io = new TestInputOutput();
         target = new SetNameCommand(io);
+        game = mock(Game.class);
+        Player player = new Player();
+        player.setName("hi");
+        player.setHitPoints(50);
+        player = spy(player);
+        when(game.getPlayer()).thenReturn(player);
     }
 
     // TESTING EXECUTE***
     @Test
+    public void execute_should_set_name() {
+        //Act
+        target.execute("@set name=Fluefedor", game);
+
+        //Assert
+        verify(game, times(1)).getPlayer();
+    }
+
+
+    @Test
     public void execute_should_display_all_words_but_set_name() {
         //Act
-        target.execute("@set name=Fluefedor", new Game(null, io));
+        target.execute("@set name=Fluefedor", game);
 
         //Assert
         assertEquals("Your name is now Fluefedor", io.lastText);
