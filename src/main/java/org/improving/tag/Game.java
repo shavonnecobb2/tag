@@ -15,13 +15,15 @@ public class Game {
     private InputOutput io;
     private Player p;
     private Location startingLocation;
+    private final SaveGameFactory saveFactory;
 
     // constructors
-    public Game (Command[] commands, InputOutput io) {
+    public Game (Command[] commands, InputOutput io, SaveGameFactory saveFactory) {
         startingLocation = buildWorld();
         this.commands = commands;
         this.io = io;
         this.p = new Player(startingLocation);
+        this.saveFactory = saveFactory;
     }
 
     public Location getStartingLocation() {
@@ -57,7 +59,8 @@ public class Game {
                 validCommand.execute(input, this);
             }
                else if (input.equalsIgnoreCase("exit")) {
-                    io.displayText("Aw.. bye!");
+                    saveFactory.save(this);
+                    io.displayText("Well then.. bye!");
                     loop = false;
                 } else {
                     io.displayText("You good? I didn't quite get that..");
@@ -115,7 +118,7 @@ public class Game {
 
 
         tdh.getExits().add(new Exit("Heaven Ave", tmcs, "h", "heaven", "ave"));
-        tdh.getExits().add(new Exit("The Deathly Brownie", td, "tdb", "brownie", "deathly", "the"));
+        tdh.getExits().add(new Exit("The Deathly Brownie", td, "tdb", "brownie", "death", "the"));
         td.getExits().add(new Exit("Camel Path", ta, "cp", "camel", "path"));
         td.getExits().add(new Exit("The Dock", a, "dock", "the", "d"));
         td.getExits().add(new Exit("Rocky Road", tict, "rocky", "road", "rr"));
