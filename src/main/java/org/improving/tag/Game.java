@@ -90,28 +90,28 @@ public class Game {
         tmcs.setName("The Mac & Cheese Shop");
 
         var a = new Location();
-        tmcs.setName("Airport");
+        a.setName("Airport");
 
         var tict = new Location();
-        tmcs.setName("The Ice Cream Truck");
+        tict.setName("The Ice Cream Truck");
 
         var tmo = new Location();
-        tmcs.setName("The Mountains");
+        tmo.setName("The Mountains");
 
         var tma = new Location();
-        tmcs.setName("The Mall");
+        tma.setName("The Mall");
 
         var md = new Location();
-        tmcs.setName("Mount Doom");
+        md.setName("Mount Doom");
 
         var tvod = new Location();
-        tmcs.setName("The Volcano of Death");
+        tvod.setName("The Volcano of Death");
 
         var tr = new Location();
-        tmcs.setName("The Reef");
+        tr.setName("The Reef");
 
         var tvm = new Location();
-        tmcs.setName("The Velvet Moose");
+        tvm.setName("The Velvet Moose");
 
 
         tdh.getExits().add(new Exit("Heaven Ave", tmcs, "h", "heaven", "ave"));
@@ -137,6 +137,7 @@ public class Game {
         tma.getExits().add(new Exit("An Escalator of Doom", tvod, "escalator of doom", "escalator", "ed"));
         tma.getExits().add(new Exit("Path to Doom", md, "path doom", "path", "pd"));
         md.getExits().add(new Exit("Jump into Lava", tvod, "lava", "jump lava", "jump"));
+        md.getExits().add(new Exit("The Cab", tma, "cab", "the", "tc"));
 
         return tdh;
     }
