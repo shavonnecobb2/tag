@@ -51,7 +51,7 @@ public class SetCommandTests {
     @Test
     public void execute_should_display_all_words_but_set_name_with_spaces() {
         //Act
-        target.execute("       @set name=Fluefedor   ", new Game(null, io));
+        target.execute("       @set name=Fluefedor   ", new Game(null, io, null));
 
         //Assert
         assertEquals("Your name is now Fluefedor", io.lastText);
