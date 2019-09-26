@@ -1,8 +1,6 @@
 package org.improving.tag.commands;
 
-import org.improving.tag.Exit;
-import org.improving.tag.Game;
-import org.improving.tag.InputOutput;
+import org.improving.tag.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -27,6 +25,11 @@ public class MoveCommand implements Command {
     public void execute(String input, Game game) {
         input = input.trim();
         var destination = input.substring(5);
+
+        if (game.getPlayer().getLocation().getAdversary() != null) {
+            io.displayText("You Shall NOT Pass");
+            return;
+        }
 
         Exit exit = null;
         for (var e : game.getPlayer().getLocation().getExits()) {
