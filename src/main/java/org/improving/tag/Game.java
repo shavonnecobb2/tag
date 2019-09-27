@@ -19,7 +19,6 @@ public class Game {
     private Location startingLocation;
     private List<Location> locationList = new ArrayList<>();
     private final SaveGameFactory saveFactory;
-    private Adversary adversary;
 
     // constructors
     public Game (Command[] commands, InputOutput io, SaveGameFactory saveFactory) {
@@ -183,5 +182,6 @@ public class Game {
         return null;
     }
 }
+
 
 
