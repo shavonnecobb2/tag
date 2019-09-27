@@ -147,7 +147,6 @@ public class Game {
         tvm.getExits().add(new Exit("The Pudding Slide", a, "pudding slide", "pudding", "slide", "ps", "tps"));
         a.getExits().add(new Exit("Flight to the Mall", tma, "to the mall", "mall", "f to mall", "fttm"));
         a.getExits().add(new Exit("Flight 121", tmo, "121", "f121"));
-<<<<<<< HEAD
         tmo.getExits().add(new Exit("Bike Trail", tr, "bike", "b"));
         tmo.getExits().add(new Exit("The Plane", ta, "plane", "p"));
         tmo.getExits().add(new Exit("The Narrow Trail", md, "narrow", "narrow trail"));
@@ -160,7 +159,6 @@ public class Game {
         tma.getExits().add(new Exit("Path to Doom", md, "path doom", "path", "pd"));
         md.getExits().add(new Exit("Jump into Lava", tvod, "lava", "jump lava", "jump"));
         md.getExits().add(new Exit("The Cab", tma, "cab", "the", "tc"));
-=======
         tmo.getExits().add(new Exit("Bike Trail", tr, "bike", "b", "bt"));
         tmo.getExits().add(new Exit("The Plane", ta, "plane", "p", "tp"));
         tmo.getExits().add(new Exit("The Narrow Trail", md, "narrow", "narrow trail", "tnt", "the narrow"));
@@ -172,7 +170,6 @@ public class Game {
         tma.getExits().add(new Exit("An Escalator of Doom", tvod, "escalator of doom", "escalator", "ed", "doom"));
         tma.getExits().add(new Exit("Path to Doom", md, "path doom", "path", "pd", "doom path", "ptd"));
         md.getExits().add(new Exit("Jump into Lava", tvod, "lava", "jump lava", "jump", "jil"));
->>>>>>> ioc
 
         return tdh;
     }
