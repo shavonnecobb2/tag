@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 public class DanceCommand extends BaseEmoteCommand {
 
     public DanceCommand(InputOutput io) {
-        super("dance", "You danced like a freaking superstar.", io);
+        super("You danced like a freaking superstar.", io, "dance", "d");
     }
 }

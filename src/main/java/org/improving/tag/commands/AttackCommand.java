@@ -9,11 +9,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 @Component
-public class AttackCommand implements Command{
+public class AttackCommand extends BaseAliasedCommand{
     private InputOutput io;
     private Random r;
 
     public AttackCommand(InputOutput io, Random random) {
+        super (io, "attack", "a");
         this.io = io;
         this.r = r;
     }
@@ -29,6 +30,7 @@ public class AttackCommand implements Command{
 
         while (adversary == null) {
             io.displayText("...Attack what?");
+            return;
         }
         if (adversary != null) {
             Random r = new Random();

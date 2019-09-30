@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 @Component
 public class Game {
@@ -19,14 +20,16 @@ public class Game {
     private Location startingLocation;
     private List<Location> locationList = new ArrayList<>();
     private final SaveGameFactory saveFactory;
+    private ExitCommand exitCommand;
 
     // constructors
-    public Game (Command[] commands, InputOutput io, SaveGameFactory saveFactory) {
+    public Game(Command[] commands, InputOutput io, SaveGameFactory saveFactory) {
         startingLocation = buildWorld();
         this.commands = commands;
         this.io = io;
         this.p = new Player(startingLocation);
         this.saveFactory = saveFactory;
+        this.exitCommand = exitCommand;
     }
 
 
@@ -38,14 +41,18 @@ public class Game {
         return p;
     }
 
-    public Date getStartTime() { return startTime; }
-    private void setStartTime (Date startTime) {
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    private void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime () {
+    public Date getEndTime() {
         return endTime;
     }
+
     private void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
@@ -54,24 +61,23 @@ public class Game {
         this.setStartTime(new Date());
 
         boolean loop = true;
-        while(loop) {
-            io.displayPrompt("> ");
-            String input = io.receiveInput();
+        while (loop) {
+            try {
+                io.displayPrompt("> ");
+                String input = io.receiveInput();
 
-            Command validCommand = getValidCommand(input);
-            if (null !=validCommand) {
-                validCommand.execute(input, this);
-            }
-               else if (input.equalsIgnoreCase("exit")) {
-                    saveFactory.save(this);
-                    io.displayText("Well then.. bye!");
-                    loop = false;
+                Command validCommand = getValidCommand(input);
+                if (null != validCommand) {
+                    validCommand.execute(input, this);
                 } else {
                     io.displayText("You good? I didn't quite get that..");
                 }
+            } catch (GameExitException ex) {
+                loop = false;
             }
-        this.setEndTime(new Date());
         }
+        this.setEndTime(new Date());
+    }
 
     private Command getValidCommand(String input) {
         Command validCommand = null;
@@ -87,7 +93,6 @@ public class Game {
         var tdh = new Location();
         tdh.setName("The Deathly Hallows");
         this.locationList.add(tdh);
-        tdh.setAdversary(new Adversary());
 
         var td = new Location();
         td.setName("The Desert");
@@ -120,6 +125,7 @@ public class Game {
         var md = new Location();
         md.setName("Mount Doom");
         this.locationList.add(md);
+        md.setAdversary(new Adversary());
 
         var tvod = new Location();
         tvod.setName("The Volcano of Death");
@@ -152,7 +158,6 @@ public class Game {
         tmo.getExits().add(new Exit("The Lava Flow", tvod, "lava", "flow", "lava flow", "lv"));
         tr.getExits().add(new Exit("The Scenic Route", tvm, "scenic", "route", "scenic route", "sr"));
         tr.getExits().add(new Exit("The City Walk", tma, "city", "walk", "city walk", "cw"));
-        ta.getExits().add(new Exit("Amaz-ing Moose", tvm, "amazing", "amazing moose", "moose", "am"));
         tict.getExits().add(new Exit("Magic Portal", md, "magic", "portal", "mp"));
         tma.getExits().add(new Exit("An Escalator of Doom", tvod, "escalator of doom", "escalator", "ed"));
         tma.getExits().add(new Exit("Path to Doom", md, "path doom", "path", "pd"));
@@ -166,8 +171,6 @@ public class Game {
         tr.getExits().add(new Exit("The City Walk", tma, "city", "walk", "city walk", "cw", "tcw"));
         ta.getExits().add(new Exit("Amaz-ing Moose", tvm, "amazing", "amazing moose", "moose", "am", "amaze"));
         tict.getExits().add(new Exit("Magic Portal", md, "magic", "portal", "mp", "the magic portal"));
-        tma.getExits().add(new Exit("An Escalator of Doom", tvod, "escalator of doom", "escalator", "ed", "doom"));
-        tma.getExits().add(new Exit("Path to Doom", md, "path doom", "path", "pd", "doom path", "ptd"));
         md.getExits().add(new Exit("Jump into Lava", tvod, "lava", "jump lava", "jump", "jil"));
 
         return tdh;
