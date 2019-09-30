@@ -18,7 +18,7 @@ public class ExitCommand extends BaseAliasedCommand {
     }
 
     @Override
-    public void childExecute(String input, Game game) {
+    public void childExecute(String input, Game game) throws GameExitException {
             saveGame.save(game);
             io.displayText("See you later dude!");
             throw new GameExitException();
