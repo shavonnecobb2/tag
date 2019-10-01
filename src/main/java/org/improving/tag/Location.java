@@ -13,7 +13,6 @@ public class Location {
     private List<Exit> exits = new ArrayList<>();
     private Adversary adversary;
     private TreasureChest treasureChest = TreasureChest.NO_TREASURE;
-    private UniqueItems uniqueItems;
 
     public Adversary getAdversary() {
         return adversary;
