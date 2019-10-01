@@ -1,5 +1,8 @@
 package org.improving.tag;
 
+import org.improving.tag.items.Item;
+import org.improving.tag.items.UniqueItems;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +12,8 @@ public class Location {
     private List<String> tags = new ArrayList<>();
     private List<Exit> exits = new ArrayList<>();
     private Adversary adversary;
+    private TreasureChest treasureChest = TreasureChest.NO_TREASURE;
+    private UniqueItems uniqueItems;
 
     public Adversary getAdversary() {
         return adversary;
@@ -31,12 +36,31 @@ public class Location {
         this.description = description;
     }
 
-// removed setters for both Lists
     public List<String> getTags() {
         return tags;
     }
 
     public List<Exit> getExits() {
         return exits;
+    }
+
+    public String getTreasureDescription() {
+        return treasureChest.toString();
+    }
+
+    public Item openTreasureChest () {
+        if (TreasureChest.NO_TREASURE.equals(treasureChest)) {
+            throw new UnsupportedOperationException();
+        }
+        Item treasureItem = treasureChest.getItem();
+        treasureChest = TreasureChest.NO_TREASURE;
+        return treasureItem;
+    }
+
+    public TreasureChest getTreasureChest() {
+        return treasureChest;
+    }
+    public void setTreasureChest(TreasureChest treasureChest) {
+        this.treasureChest = treasureChest;
     }
 }

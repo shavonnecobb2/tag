@@ -18,10 +18,16 @@ public class ConsoleInputOutput implements InputOutput {
     }
 
     @Override
-    public void displayText(String text) {
-        System.out.println(text);
+    public void displayNewLine() {
+        System.out.println();
     }
 
+    @Override
+    public void displayText(Object text) {
+        if (!"".equals(text.toString())) {
+            System.out.println(text);
+        }
+    }
     @Override
     public void displayPrompt(String prompt) {
         System.out.print(prompt);

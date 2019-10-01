@@ -1,6 +1,7 @@
 package org.improving.tag;
 
 import org.improving.tag.commands.*;
+import org.improving.tag.items.UniqueItems;
 import org.springframework.stereotype.Component;
 
 import javax.naming.Name;
@@ -104,6 +105,7 @@ public class Game {
 
         var tmcs = new Location();
         tmcs.setName("The Mac & Cheese Shop");
+        tmcs.setTreasureChest(new TreasureChest(UniqueItems.GOLDEN_RING, "A Kraft box"));
         this.locationList.add(tmcs);
 
         var a = new Location();
@@ -152,10 +154,6 @@ public class Game {
         tvm.getExits().add(new Exit("The Pudding Slide", a, "pudding slide", "pudding", "slide", "ps", "tps"));
         a.getExits().add(new Exit("Flight to the Mall", tma, "to the mall", "mall", "f to mall", "fttm"));
         a.getExits().add(new Exit("Flight 121", tmo, "121", "f121"));
-        tmo.getExits().add(new Exit("Bike Trail", tr, "bike", "b"));
-        tmo.getExits().add(new Exit("The Plane", ta, "plane", "p"));
-        tmo.getExits().add(new Exit("The Narrow Trail", md, "narrow", "narrow trail"));
-        tmo.getExits().add(new Exit("The Lava Flow", tvod, "lava", "flow", "lava flow", "lv"));
         tr.getExits().add(new Exit("The Scenic Route", tvm, "scenic", "route", "scenic route", "sr"));
         tr.getExits().add(new Exit("The City Walk", tma, "city", "walk", "city walk", "cw"));
         tict.getExits().add(new Exit("Magic Portal", md, "magic", "portal", "mp"));

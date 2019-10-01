@@ -35,10 +35,12 @@ public class MoveCommand extends BaseAliasedCommand {
         parameters.remove(0);
         var destination = String.join(" ", parameters);
 
+
         if (game.getPlayer().getLocation().getAdversary() != null) {
             io.displayText("You Shall NOT Pass");
             return;
         }
+
 
         Exit exit = null;
         for (var e : game.getPlayer().getLocation().getExits()) {

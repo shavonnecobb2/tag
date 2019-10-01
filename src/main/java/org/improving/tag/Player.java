@@ -1,9 +1,12 @@
 package org.improving.tag;
 
+import java.util.BitSet;
+
 public class Player {
     private String name = "The Player";
     private int hitPoints = 100;
     private Location location;
+    private Inventory inventory = new Inventory();
 
     // this location is the FIRST location of the game
     public Player(Location location) {
@@ -29,5 +32,12 @@ public class Player {
     }
     public void setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 }
