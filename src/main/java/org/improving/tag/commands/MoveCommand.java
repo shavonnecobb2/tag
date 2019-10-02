@@ -37,7 +37,7 @@ public class MoveCommand extends BaseAliasedCommand {
 
 
         if (game.getPlayer().getLocation().getAdversary() != null) {
-            io.displayText("You Shall NOT Pass");
+            io.displayText("Hey you! You shall not pass!");
             return;
         }
 

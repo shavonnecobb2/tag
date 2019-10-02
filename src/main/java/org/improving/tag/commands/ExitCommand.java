@@ -13,14 +13,14 @@ public class ExitCommand extends BaseAliasedCommand {
     private final SaveGameFactory saveGame;
 
     public ExitCommand(InputOutput io, SaveGameFactory saveGame) {
-        super(io, "exit", "e");
+        super(io, "exit", "e", "ex");
         this.saveGame = saveGame;
     }
 
     @Override
     public void childExecute(String input, Game game) throws GameExitException {
             saveGame.save(game);
-            io.displayText("See you later dude!");
+            io.displayText("Bye Queen!");
             throw new GameExitException();
            }
 

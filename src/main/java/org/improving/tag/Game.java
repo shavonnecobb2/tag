@@ -94,7 +94,6 @@ public class Game {
         var tdh = new Location();
         tdh.setName("The Deathly Hallows");
         this.locationList.add(tdh);
-        tdh.setAdversary(new Adversary());
 
         var td = new Location();
         td.setName("The Desert");
@@ -128,7 +127,7 @@ public class Game {
         var md = new Location();
         md.setName("Mount Doom");
         this.locationList.add(md);
-
+        md.setAdversary(new Adversary());
 
         var tvod = new Location();
         tvod.setName("The Volcano of Death");
@@ -141,6 +140,7 @@ public class Game {
         var tvm = new Location();
         tvm.setName("The Velvet Moose");
         this.locationList.add(tvm);
+        tvm.setTreasureChest(new TreasureChest(UniqueItems.PINK_POTION, "A Pink Fizzy Potion"));
 
 
         tdh.getExits().add(new Exit("Heaven Ave", tmcs, "h", "ha", "heaven", "ave"));
@@ -166,11 +166,8 @@ public class Game {
         tmo.getExits().add(new Exit("The Plane", ta, "plane", "p", "tp"));
         tmo.getExits().add(new Exit("The Narrow Trail", md, "narrow", "narrow trail", "tnt", "the narrow"));
         tmo.getExits().add(new Exit("The Lava Flow", tvod, "lava", "flow", "lava flow", "lf", "tlf", "the lava"));
-        tr.getExits().add(new Exit("The Scenic Route", tvm, "scenic", "route", "scenic route", "sr", "tsr"));
-        tr.getExits().add(new Exit("The City Walk", tma, "city", "walk", "city walk", "cw", "tcw"));
         ta.getExits().add(new Exit("Amaz-ing Moose", tvm, "amazing", "amazing moose", "moose", "am", "amaze"));
         tict.getExits().add(new Exit("Magic Portal", md, "magic", "portal", "mp", "the magic portal"));
-        md.getExits().add(new Exit("Jump into Lava", tvod, "lava", "jump lava", "jump", "jil"));
 
         return tdh;
     }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class InventoryCommand extends BaseAliasedCommand {
 
     public InventoryCommand(InputOutput io) {
-        super(io,"inventory", "i");
+        super(io,"inventory", "i", "in", "inven", "invent");
     }
 
     @Override

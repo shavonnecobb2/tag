@@ -1,7 +1,6 @@
 package org.improving.tag;
 
 import org.improving.tag.items.Item;
-import org.improving.tag.items.UniqueItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,5 +60,15 @@ public class Location {
     }
     public void setTreasureChest(TreasureChest treasureChest) {
         this.treasureChest = treasureChest;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Location) {
+            Location location = (Location)obj;
+            return this.getName().equals(location.getName()) &&
+                    this.getDescription().equals(location.getDescription());
+        }
+        return super.equals(obj);
     }
 }

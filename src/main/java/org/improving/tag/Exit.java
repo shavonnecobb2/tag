@@ -9,9 +9,10 @@ public class Exit {
     private Location destination;
     private List<String> aliases = new ArrayList<>();
 
-    public Exit() { }
+    public Exit() {
+    }
 
-    public Exit(String name, Location destination, String...aliases) {
+    public Exit(String name, Location destination, String... aliases) {
         this.name = name;
         this.destination = destination;
         this.aliases.addAll(Arrays.asList(aliases));
@@ -20,6 +21,7 @@ public class Exit {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -27,12 +29,27 @@ public class Exit {
     public Location getDestination() {
         return destination;
     }
+
     public void setDestination(Location destination) {
         this.destination = destination;
     }
 
-// removed setters for List
     public List<String> getAliases() {
         return aliases;
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Exit) {
+            Exit exit = (Exit) obj;
+            return this.getName().equals(exit.getName()) &&
+                    this.destination.equals(exit.getDestination());
+        }
+        return super.equals(obj);
     }
 }

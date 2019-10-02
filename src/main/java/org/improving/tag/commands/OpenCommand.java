@@ -28,7 +28,7 @@ public class OpenCommand extends BaseAliasedCommand {
     @Override
     public void childExecute(String input, Game game) {
         Item item = game.getPlayer().getLocation().openTreasureChest();
-        io.displayText("You just found " + item + "!!!");
+        io.displayText("You just found the " + item + " which has been added to your inventory!!!");
         game.getPlayer().getInventory().addItem(item);
     }
 }

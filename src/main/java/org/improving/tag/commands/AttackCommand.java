@@ -34,21 +34,22 @@ public class AttackCommand extends BaseAliasedCommand {
             Random r = new Random();
             int x = r.nextInt(100) + 1;
             if (x <= 50) {
-                io.displayText("Woohoo! You have just dealt 10 Damage to " + adversary.getName() + "!");
+                io.displayText("Ayyeee! You just dealt 10 Damage to " + adversary.getName() + "!" +
+                        "\n" + "Take that " + adversary.getName() + "!");
                 adversary.setDamageTaken(adversary.getDamageTaken() + 10);
                 adversary.setHitPoints(adversary.getHitPoints() - 10);
                 io.displayText("Remaining Hit Points for " + adversary.getName() + ": " + adversary.getHitPoints());
             } else {
-                io.displayText("Dang it! You missed!");
+                io.displayText("Uh oh - you missed! Try again!");
             }
 
             var hp = adversary.getHitPoints();
             Item adversaryItem = game.getPlayer().getLocation().getAdversary().getAdversaryItem();
             if (hp <= 0) {
-                io.displayText("\n" + "WOOHOO!! You have killed " + adversary.getName() + "!!");
+                io.displayText("\n" + "YAAAAASSSSS!! You just killed " + adversary.getName() + "!!!!");
                 game.getPlayer().getInventory().addItem(adversaryItem);
-                io.displayText("Oh wow! " + adversary.getName() + " had a magical item!");
-                io.displayText("You have added: " + adversaryItem + " to your inventory.");
+                io.displayText("Look at that! " + adversary.getName() + " possessed a magical item - you lucky girl!!");
+                io.displayText("You have added: " + adversaryItem + " to your inventory! Yeet yeet!!");
                 game.getPlayer().getLocation().setAdversary(null);
             }
         }
