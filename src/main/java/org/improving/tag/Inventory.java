@@ -11,7 +11,6 @@ public class Inventory {
 
     public Inventory() {
         items.add(UniqueItems.CHEWY_COOKIE);
-        items.add(UniqueItems.SPARKLING_TIARA);
         items.add(UniqueItems.PINK_SOCK);
     }
 

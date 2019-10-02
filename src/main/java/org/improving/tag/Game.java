@@ -1,6 +1,7 @@
 package org.improving.tag;
 
 import org.improving.tag.commands.*;
+import org.improving.tag.items.MonetaryItems;
 import org.improving.tag.items.UniqueItems;
 import org.springframework.stereotype.Component;
 
@@ -98,14 +99,16 @@ public class Game {
         var td = new Location();
         td.setName("The Desert");
         this.locationList.add(td);
+        td.setTreasureChest(new TreasureChest(UniqueItems.SPARKLING_TIARA, "A glittering half-empty water jug"));
 
         var ta = new Location();
         ta.setName("The Amazon");
         this.locationList.add(ta);
+        ta.setTreasureChest(new TreasureChest(MonetaryItems.RUBY_GEM, "A small, red box under the trees"));
 
         var tmcs = new Location();
         tmcs.setName("The Mac & Cheese Shop");
-        tmcs.setTreasureChest(new TreasureChest(UniqueItems.GOLDEN_RING, "A Kraft box"));
+        tmcs.setTreasureChest(new TreasureChest(UniqueItems.GOLDEN_RING, "A Kraft box sitting on the counter"));
         this.locationList.add(tmcs);
 
         var a = new Location();
@@ -119,6 +122,7 @@ public class Game {
         var tmo = new Location();
         tmo.setName("The Mountains");
         this.locationList.add(tmo);
+        tmo.setTreasureChest(new TreasureChest(MonetaryItems.GOLD_COIN, "A black, velvet pouch sitting on the ground"));
 
         var tma = new Location();
         tma.setName("The Mall");
@@ -136,11 +140,12 @@ public class Game {
         var tr = new Location();
         tr.setName("The Reef");
         this.locationList.add(tr);
+        tr.setTreasureChest(new TreasureChest(MonetaryItems.SILVER_COIN, "A large cardboard box floating upside down"));
 
         var tvm = new Location();
         tvm.setName("The Velvet Moose");
         this.locationList.add(tvm);
-        tvm.setTreasureChest(new TreasureChest(UniqueItems.PINK_POTION, "A Pink Fizzy Potion"));
+        tvm.setTreasureChest(new TreasureChest(UniqueItems.PINK_POTION, "A large vial resting in the middle of the table"));
 
 
         tdh.getExits().add(new Exit("Heaven Ave", tmcs, "h", "ha", "heaven", "ave"));
