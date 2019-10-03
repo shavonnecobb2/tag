@@ -6,11 +6,10 @@ import org.improving.tag.items.UniqueItems;
 import org.springframework.stereotype.Component;
 
 import javax.naming.Name;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class Game {
@@ -82,14 +81,10 @@ public class Game {
     }
 
     private Command getValidCommand(String input) {
-        Command validCommand = null;
-        for (Command command : commands) {
-            if (command.isValid(input, this)) {
-                return command;
-            }
-        }
-        return null;
+       return Stream.of(commands).filter(command -> command.
+               isValid(input, this)).findFirst().orElse(null);
     }
+
 
     private Location buildWorld() {
         var tdh = new Location();
@@ -99,18 +94,17 @@ public class Game {
         var td = new Location();
         td.setName("The Desert");
         this.locationList.add(td);
-        td.setTreasureChest(new TreasureChest(UniqueItems.SPARKLING_TIARA, "A glittering half-empty water jug."));
+        td.setTreasureChest(new TreasureChest("A glittering half-empty water jug.", UniqueItems.SPARKLING_TIARA));
 
         var ta = new Location();
         ta.setName("The Amazon");
         this.locationList.add(ta);
-        ta.setMoneyChest(new MoneyChest(MonetaryItems.RUBY_GEM, "A small, red box under the trees."));
+        ta.setTreasureChest(new TreasureChest("A small, red box under the trees.", MonetaryItems.RUBY_GEM));
 
 
         var tmcs = new Location();
         tmcs.setName("The Mac & Cheese Shop");
-        tmcs.setTreasureChest(new TreasureChest(UniqueItems.GOLDEN_RING, "A Kraft box sitting on the counter."));
-        tmcs.setMoneyChest(new MoneyChest(MonetaryItems.SILVER_COIN, "A pile of crumpled newspaper lying on the floor."));
+        tmcs.setTreasureChest(new TreasureChest("A Kraft box sitting on the counter.", UniqueItems.GOLDEN_RING, MonetaryItems.SILVER_COIN));
         this.locationList.add(tmcs);
 
         var a = new Location();
@@ -124,7 +118,8 @@ public class Game {
         var tmo = new Location();
         tmo.setName("The Mountains");
         this.locationList.add(tmo);
-        tmo.setMoneyChest(new MoneyChest(MonetaryItems.GOLD_COIN, "A black, velvet pouch sitting on the ground."));
+        // tmo.setTC(new TC("d", i1, i2, i3))
+        tmo.setTreasureChest(new TreasureChest("A black, velvet pouch sitting on the ground", MonetaryItems.GOLD_COIN));
 
         var tma = new Location();
         tma.setName("The Mall");
@@ -146,7 +141,7 @@ public class Game {
         var tvm = new Location();
         tvm.setName("The Velvet Moose");
         this.locationList.add(tvm);
-        tvm.setTreasureChest(new TreasureChest(UniqueItems.PINK_POTION, "A large vial resting in the middle of the table."));
+        tvm.setTreasureChest(new TreasureChest("A large vial resting in the middle of the table.", UniqueItems.PINK_POTION));
 
 
         tdh.getExits().add(new Exit("Heaven Ave", tmcs, "h", "ha", "heaven", "ave"));

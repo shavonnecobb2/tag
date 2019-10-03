@@ -19,16 +19,15 @@ public class Inventory {
         return items.isEmpty();
     }
 
-    public void addItem(Item item) {
-        items.add(item);
+    public void addAll(List items) {
+        this.items.addAll(items);
     }
 
     public String getInventoryDisplay() {
-        String displayString = "You have these item(s): ";
-        items.sort(new ItemComparator());
-        for (Item item : items) {
-            displayString += "\n" + item;
-        }
-        return displayString;
+        String displayString = "These are the items you possess:";
+        return items.stream().sorted(new ItemComparator()).map(item -> "\n" + item).
+                reduce(displayString, (answer, itemValue) -> answer+= itemValue);
+
     }
 }
+

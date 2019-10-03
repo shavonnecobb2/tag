@@ -11,7 +11,7 @@ public class MoveCommand extends BaseAliasedCommand {
     private InputOutput io;
 
     public MoveCommand(InputOutput io) {
-        super (io,"move", "m");
+        super(io, "move", "m");
         this.io = io;
     }
 
@@ -59,6 +59,11 @@ public class MoveCommand extends BaseAliasedCommand {
         if (exit == null) throw new UnsupportedOperationException();
 
         game.getPlayer().setLocation(exit.getDestination());
-        io.displayText("You travel " + exit.getName() + ".");
+        if (game.getPlayer().getLocation().getName().equalsIgnoreCase("The Volcano of Death")) {
+            io.displayText("Welcome to the Volcano of DEATH - you are now DEAD. GOODBYE.");
+            throw new GameExitException();
+        } else {
+            io.displayText("You travel " + exit.getName() + ".");
+        }
     }
 }

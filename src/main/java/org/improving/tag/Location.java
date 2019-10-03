@@ -15,10 +15,10 @@ public class Location {
     private MoneyChest moneyChest = MoneyChest.NO_MONEY;
 
 
-
     public Adversary getAdversary() {
         return adversary;
     }
+
     public void setAdversary(Adversary adversary) {
         this.adversary = adversary;
     }
@@ -26,6 +26,7 @@ public class Location {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -33,6 +34,7 @@ public class Location {
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -49,42 +51,34 @@ public class Location {
         return treasureChest.toString();
     }
 
-    public Item openTreasureChest () {
-        if (TreasureChest.NO_TREASURE.equals(treasureChest)) {
-            throw new UnsupportedOperationException();
+    public List<Item> openTreasureChest() {
+        for (Item item : treasureChest.getTreasureChestItems()) {
+            System.out.println("    " + item.getName());
         }
-        Item treasureItem = treasureChest.getItem();
-        treasureChest = TreasureChest.NO_TREASURE;
-        return treasureItem;
+        if (this.getTreasureChest().equals(TreasureChest.NO_TREASURE)) {
+            throw new UnsupportedOperationException();
+        } else {
+            List treasureItem = treasureChest.getTreasureChestItems();
+            treasureChest = TreasureChest.NO_TREASURE;
+            return treasureItem;
+        }
     }
 
-    public Item openMoneyChest () {
-        if (MoneyChest.NO_MONEY.equals(moneyChest)) {
-            throw new UnsupportedOperationException();
-        }
-        Item moneyItem = moneyChest.getItem();
-        moneyChest = MoneyChest.NO_MONEY;
-        return moneyItem;
-    }
 
     public TreasureChest getTreasureChest() {
         return treasureChest;
     }
+
+
     public void setTreasureChest(TreasureChest treasureChest) {
         this.treasureChest = treasureChest;
     }
 
-    public MoneyChest getMoneyChest() {
-        return moneyChest;
-    }
-    public void setMoneyChest(MoneyChest moneyChest) {
-        this.moneyChest = moneyChest;
-    }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Location) {
-            Location location = (Location)obj;
+            Location location = (Location) obj;
             return this.getName().equals(location.getName()) &&
                     this.getDescription().equals(location.getDescription());
         }

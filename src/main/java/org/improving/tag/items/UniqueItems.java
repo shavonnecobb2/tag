@@ -22,7 +22,7 @@ public enum UniqueItems implements Item {
 
     @Override
     public String toString() {
-        return name + ": " + description;
+       return name + ": " + description;
     }
 
     @Override

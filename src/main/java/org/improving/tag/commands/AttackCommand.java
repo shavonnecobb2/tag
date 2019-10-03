@@ -8,6 +8,7 @@ import org.improving.tag.items.UniqueItems;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -44,10 +45,10 @@ public class AttackCommand extends BaseAliasedCommand {
             }
 
             var hp = adversary.getHitPoints();
-            Item adversaryItem = game.getPlayer().getLocation().getAdversary().getAdversaryItem();
+            List adversaryItem = game.getPlayer().getLocation().getAdversary().getAdversaryItem();
             if (hp <= 0) {
                 io.displayText("\n" + "YAAAAASSSSS!! You just killed " + adversary.getName() + "!!!!");
-                game.getPlayer().getInventory().addItem(adversaryItem);
+                game.getPlayer().getInventory().addAll(adversaryItem);
                 io.displayText("Look at that! " + adversary.getName() + " possessed a magical item - you lucky girl!!");
                 io.displayText("You have added: " + adversaryItem + " to your inventory! Yeet yeet!!");
                 game.getPlayer().getLocation().setAdversary(null);

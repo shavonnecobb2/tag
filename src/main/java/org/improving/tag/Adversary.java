@@ -3,12 +3,14 @@ package org.improving.tag;
 import org.improving.tag.items.Item;
 import org.improving.tag.items.UniqueItems;
 
+import java.util.List;
+
 public class Adversary {
     private String name = "Sauron";
     private int hitPoints = 100;
     private int damageTaken;
     private int attackDamage;
-    private TreasureChest treasureChest = new TreasureChest(UniqueItems.BLUE_SHELL, "A Blue Shell with Glittery Stripes");
+    private TreasureChest treasureChest = new TreasureChest("A Blue Shell with Glittery Stripes", UniqueItems.BLUE_SHELL);
 
 
     public String getName() {
@@ -43,9 +45,8 @@ public class Adversary {
         this.attackDamage = attackDamage;
     }
 
-    public Item getAdversaryItem() {
-        Item treasureItem = treasureChest.getItem();
-        return treasureItem;
+    public List getAdversaryItem() {
+        return treasureChest.getItem();
     }
 
 }
