@@ -12,6 +12,9 @@ public class Location {
     private List<Exit> exits = new ArrayList<>();
     private Adversary adversary;
     private TreasureChest treasureChest = TreasureChest.NO_TREASURE;
+    private MoneyChest moneyChest = MoneyChest.NO_MONEY;
+
+
 
     public Adversary getAdversary() {
         return adversary;
@@ -55,11 +58,27 @@ public class Location {
         return treasureItem;
     }
 
+    public Item openMoneyChest () {
+        if (MoneyChest.NO_MONEY.equals(moneyChest)) {
+            throw new UnsupportedOperationException();
+        }
+        Item moneyItem = moneyChest.getItem();
+        moneyChest = MoneyChest.NO_MONEY;
+        return moneyItem;
+    }
+
     public TreasureChest getTreasureChest() {
         return treasureChest;
     }
     public void setTreasureChest(TreasureChest treasureChest) {
         this.treasureChest = treasureChest;
+    }
+
+    public MoneyChest getMoneyChest() {
+        return moneyChest;
+    }
+    public void setMoneyChest(MoneyChest moneyChest) {
+        this.moneyChest = moneyChest;
     }
 
     @Override

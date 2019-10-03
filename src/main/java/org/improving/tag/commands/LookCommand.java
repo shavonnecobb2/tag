@@ -17,11 +17,13 @@ public class LookCommand extends BaseAliasedCommand {
     @Override
     public void execute(String input, Game game) {
         var location = game.getPlayer().getLocation();
-        io.displayText(location.getName());
+        io.displayText("You are located at " + location.getName());
         io.displayText(location.getDescription());
+        io.displayText("You notice:");
         io.displayText(location.getTreasureChest());
+        io.displayText(location.getMoneyChest());
         io.displayNewLine();
-        io.displayText("Exits:");
+        io.displayText("Available Exits:");
 
         for (var exit : location.getExits()) {
             io.displayText(" " + exit);
