@@ -57,13 +57,13 @@ public class Location {
         }
         if (this.getTreasureChest().equals(TreasureChest.NO_TREASURE)) {
             throw new UnsupportedOperationException();
-        } else {
+        } else
+        {
             List treasureItem = treasureChest.getTreasureChestItems();
             treasureChest = TreasureChest.NO_TREASURE;
             return treasureItem;
         }
     }
-
 
     public TreasureChest getTreasureChest() {
         return treasureChest;
