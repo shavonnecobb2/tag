@@ -4,6 +4,8 @@ public enum MonetaryItems implements Item {
     GOLD_COIN("A rugged gold coin", "Gold Coin", 10),
     SILVER_COIN("A shiny silver coin", "Silver Coin", 5),
     RUBY_GEM("A sparkling red gem", "Ruby Gem", 200),
+    SAPPHIRE_GEM("A bright blue gem", "Sapphire Gem", 250),
+    EMERALD_GEM("A mysteriously green gem", "Emerald Green", 400),
     NOTHING("", "", 0);
 
     private final String description;

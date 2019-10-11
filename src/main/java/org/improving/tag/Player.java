@@ -7,6 +7,7 @@ public class Player {
     private int hitPoints = 100;
     private Location location;
     private Inventory inventory = new Inventory();
+    private int damageTaken;
 
     // this location is the FIRST location of the game
     public Player(Location location) {
@@ -39,5 +40,13 @@ public class Player {
     }
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
+    }
+
+    public int getDamageTaken() {
+        return damageTaken;
+    }
+
+    public void setDamageTaken(int damageTaken) {
+        this.damageTaken = damageTaken;
     }
 }

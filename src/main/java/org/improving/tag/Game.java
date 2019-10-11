@@ -81,14 +81,15 @@ public class Game {
     }
 
     private Command getValidCommand(String input) {
-       return Stream.of(commands).filter(command -> command.
-               isValid(input, this)).findFirst().orElse(null);
+        return Stream.of(commands).filter(command -> command.
+                isValid(input, this)).findFirst().orElse(null);
     }
 
 
     private Location buildWorld() {
         var tdh = new Location();
         tdh.setName("The Deathly Hallows");
+        tdh.setTreasureChest(new TreasureChest("An invisible cloak with an object peeking out underneath.", UniqueItems.HARRYS_WAND));
         this.locationList.add(tdh);
 
         var td = new Location();
@@ -109,6 +110,7 @@ public class Game {
 
         var a = new Location();
         a.setName("Airport");
+        a.setTreasureChest(new TreasureChest("A large brown suitcase resting on the arm of a chair.", MonetaryItems.EMERALD_GEM));
         this.locationList.add(a);
 
         var tict = new Location();
@@ -119,7 +121,7 @@ public class Game {
         tmo.setName("The Mountains");
         this.locationList.add(tmo);
         // tmo.setTC(new TC("d", i1, i2, i3))
-        tmo.setTreasureChest(new TreasureChest("A black, velvet pouch sitting on the ground", MonetaryItems.GOLD_COIN));
+        tmo.setTreasureChest(new TreasureChest("A black, velvet pouch sitting on the ground.", MonetaryItems.GOLD_COIN, MonetaryItems.SAPPHIRE_GEM));
 
         var tma = new Location();
         tma.setName("The Mall");
@@ -168,7 +170,6 @@ public class Game {
         tmo.getExits().add(new Exit("The Narrow Trail", md, "narrow", "narrow trail", "tnt", "the narrow"));
         tmo.getExits().add(new Exit("The Lava Flow", tvod, "lava", "flow", "lava flow", "lf", "tlf", "the lava"));
         ta.getExits().add(new Exit("Amaz-ing Moose", tvm, "amazing", "amazing moose", "moose", "am", "amaze"));
-        tict.getExits().add(new Exit("Magic Portal", md, "magic", "portal", "mp", "the magic portal"));
 
         return tdh;
     }
