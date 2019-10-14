@@ -24,10 +24,14 @@ public class ConsoleInputOutput implements InputOutput {
 
     @Override
     public void displayText(Object text) {
+        while (text == null) {
+            return;
+        }
         if (!"".equals(text.toString())) {
             System.out.println(text);
         }
     }
+
     @Override
     public void displayPrompt(String prompt) {
         System.out.print(prompt);

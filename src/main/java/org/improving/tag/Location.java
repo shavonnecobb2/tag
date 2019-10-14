@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Location {
+    private int id;
     private String name = "";
     private String description = "";
     private List<String> tags = new ArrayList<>();
@@ -14,6 +15,14 @@ public class Location {
     private TreasureChest treasureChest = TreasureChest.NO_TREASURE;
     private MoneyChest moneyChest = MoneyChest.NO_MONEY;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Adversary getAdversary() {
         return adversary;
@@ -45,6 +54,10 @@ public class Location {
 
     public List<Exit> getExits() {
         return exits;
+    }
+
+    public void addExit(Exit exit) {
+        this.exits.add(exit);
     }
 
     public String getTreasureDescription() {

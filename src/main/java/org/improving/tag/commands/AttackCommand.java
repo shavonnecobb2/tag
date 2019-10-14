@@ -35,7 +35,7 @@ public class AttackCommand extends BaseAliasedCommand {
         if (adversary != null) {
             Random r = new Random();
             int x = r.nextInt(100) + 1;
-            int y = r.nextInt(100) +1;
+            int y = r.nextInt(10) +1;
             var playerStats = game.getPlayer();
             if (x <= 50) {
                 io.displayText("You Attack - Ayyeee! You just dealt 10 Damage to " + adversary.getName() + "! Take that " + adversary.getName() + "!");
@@ -47,7 +47,7 @@ public class AttackCommand extends BaseAliasedCommand {
                 io.displayText("You Attack - You missed! Try again you big dummy!");
                 io.displayNewLine();
             }
-            if (y <= 55) {
+            if (y == 1) {
                 io.displayText("He Attacks - Dang it! " + adversary.getName() + " just dealt 10 Damage!");
                 playerStats.setDamageTaken(playerStats.getDamageTaken() + 10);
                 playerStats.setHitPoints(playerStats.getHitPoints() - 10);

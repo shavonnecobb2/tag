@@ -1,5 +1,7 @@
 package org.improving.tag;
 
+import org.improving.tag.database.ExitDAO;
+import org.improving.tag.database.LocationDAO;
 import org.improving.tag.items.MonetaryItems;
 import org.improving.tag.items.UniqueItems;
 import org.springframework.stereotype.Component;
@@ -10,12 +12,38 @@ import java.util.List;
 @Component
 public class WorldBuilder {
     private List<Location> locationList = new ArrayList<>();
+    private final LocationDAO locationDAO;
+    private final ExitDAO exitDAO;
+
+    public WorldBuilder(LocationDAO locationDAO, ExitDAO exitDAO) {
+        this.locationDAO = locationDAO;
+        this.exitDAO = exitDAO;
+    }
 
     public List<Location> getLocationList() {
         return locationList;
     }
 
+
     public Location buildWorld() {
+        try {
+            List<Location> locations = locationDAO.findAll();
+            for (Location location : locations) {
+                List<Exit> exits = exitDAO.findByOriginId(location.getId());
+                exits.forEach(exit -> {
+                    Location destination = locations.stream().filter(locat -> locat.getId() == exit.getDestinationId()).findFirst().orElse(null);
+                    exit.setDestination(destination);
+                    location.addExit(exit);
+                });
+            }
+            locationList = locations;
+            return locationList.get(0);
+        } catch (Exception e) {
+            return buildHardCodedWorld();
+        }
+    }
+
+    public Location buildHardCodedWorld() {
         var tdh = new Location();
         tdh.setName("The Deathly Hallows");
         tdh.setTreasureChest(new TreasureChest("An invisible cloak with an object peeking out underneath.", UniqueItems.HARRYS_WAND));
