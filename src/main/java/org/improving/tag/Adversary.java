@@ -12,24 +12,30 @@ import java.util.List;
 @Entity( name = "adversary" )
 public class Adversary {
     @Id
-    long id;
+    Long id;
 
     @Column( name = "Name")
     private String name = "Sauron";
 
     @Column( name = "HitPoints" )
-    private int hitPoints = 100;
+    private Integer hitPoints = 100;
 
     @Column( name = "DamageTaken" )
-    private int damageTaken;
+    private Long damageTaken;
 
     @Column( name = "AttackDamage" )
-    private int attackDamage;
+    private Long attackDamage;
 
     @Transient
     private TreasureChest treasureChest = new TreasureChest("A Blue Shell with Glittery Stripes", UniqueItems.BLUE_SHELL);
 
 //    getters && setters
+
+
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -38,27 +44,27 @@ public class Adversary {
         this.name = name;
     }
 
-    public int getHitPoints() {
+    public Integer getHitPoints() {
         return hitPoints;
     }
 
-    public void setHitPoints(int hitPoints) {
+    public void setHitPoints(Integer hitPoints) {
         this.hitPoints = hitPoints;
     }
 
-    public int getDamageTaken() {
+    public Long getDamageTaken() {
         return damageTaken;
     }
 
-    public void setDamageTaken(int damageTaken) {
+    public void setDamageTaken(Long damageTaken) {
         this.damageTaken = damageTaken;
     }
 
-    public int getAttackDamage() {
+    public Long getAttackDamage() {
         return attackDamage;
     }
 
-    public void setAttackDamage(int attackDamage) {
+    public void setAttackDamage(long attackDamage) {
         this.attackDamage = attackDamage;
     }
 

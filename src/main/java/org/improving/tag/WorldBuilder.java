@@ -28,19 +28,13 @@ public class WorldBuilder {
     public Location buildWorld() {
         try {
             List<Location> locations = locationDAO.findAll();
-            for (Location location : locations) {
-                List<Exit> exits = exitDAO.findByOriginId(location.getId());
-                exits.forEach(exit -> {
-                    Location destination = locations.stream().filter(locat -> locat.getId() == exit.getDestinationId()).findFirst().orElse(null);
-                    exit.setDestination(destination);
-                    location.addExit(exit);
-                });
-            }
             locationList = locations;
             return locationList.get(0);
         } catch (Exception e) {
-            return buildHardCodedWorld();
+//            return buildHardCodedWorld();
+            e.printStackTrace();
         }
+        return null;
     }
 
     public Location buildHardCodedWorld() {

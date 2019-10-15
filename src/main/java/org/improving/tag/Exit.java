@@ -1,9 +1,6 @@
 package org.improving.tag;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,19 +14,19 @@ public class Exit {
     @Column(name = "Name")
     private String name;
 
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "DestinationId")
     private Location destination;
 
     @Transient
     private List<String> aliases = new ArrayList<>();
 
-    @Column(name = "DestinationId")
-    private int destinationId;
+    @ManyToOne
+    @JoinColumn(name = "OriginId")
+    private Location origin;
 
-    @Column(name = "OriginId")
-    private int originId;
-
-    public Exit() { }
+    public Exit() {
+    }
 
     public Exit(String name, Location destination, String... aliases) {
         this.name = name;
@@ -37,20 +34,12 @@ public class Exit {
         this.aliases.addAll(Arrays.asList(aliases));
     }
 
-    public int getOriginId() {
-        return originId;
+    public Location getOrigin() {
+        return origin;
     }
 
-    public void setOriginId(int originId) {
-        this.originId = originId;
-    }
-
-    public int getDestinationId() {
-        return destinationId;
-    }
-
-    public void setDestinationId(int destinationId) {
-        this.destinationId = destinationId;
+    public void setOrigin(Location origin) {
+        this.origin = origin;
     }
 
     public String getName() {
@@ -75,6 +64,16 @@ public class Exit {
 
     public void addAlias(String alias) {
         this.aliases.add(alias);
+    }
+
+
+    @Column(name = "Aliases")
+    private String csvAliases;
+    @PostLoad
+    public void postLoad() {
+        if (null != csvAliases) {
+                Arrays.stream(csvAliases.replace(" ", "").split(",")).forEach(alias -> aliases.add(alias));
+            }
     }
 
     @Override
