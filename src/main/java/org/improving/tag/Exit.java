@@ -21,6 +21,9 @@ public class Exit {
     @Transient
     private List<String> aliases = new ArrayList<>();
 
+    @Column(name = "Aliases")
+    private String csvAliases;
+
     @ManyToOne
     @JoinColumn(name = "OriginId")
     private Location origin;
@@ -67,8 +70,7 @@ public class Exit {
     }
 
 
-    @Column(name = "Aliases")
-    private String csvAliases;
+
     @PostLoad
     public void postLoad() {
         if (null != csvAliases) {

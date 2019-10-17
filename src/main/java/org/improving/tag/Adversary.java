@@ -3,10 +3,8 @@ package org.improving.tag;
 import org.improving.tag.items.Item;
 import org.improving.tag.items.UniqueItems;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity( name = "adversary" )
@@ -14,23 +12,36 @@ public class Adversary {
     @Id
     Long id;
 
-    @Column( name = "Name")
+    @Column(name = "Name")
     private String name = "Sauron";
 
-    @Column( name = "HitPoints" )
+    @Column(name = "HitPoints")
     private Integer hitPoints = 100;
 
-    @Column( name = "DamageTaken" )
-    private Long damageTaken;
+    @Column(name = "DamageTaken")
+    private Integer damageTaken = 0;
 
-    @Column( name = "AttackDamage" )
-    private Long attackDamage;
+    @Column(name = "AttackDamage")
+    private Integer attackDamage;
+
+    //DELETE AFTER THIS MORNING
+    @Column(name = "ForExercise")
+    private UniqueItems uniqueItems = UniqueItems.CHEWY_COOKIE;
+    //DELETE AFTER THIS MORNING
 
     @Transient
     private TreasureChest treasureChest = new TreasureChest("A Blue Shell with Glittery Stripes", UniqueItems.BLUE_SHELL);
 
 //    getters && setters
 
+
+    public UniqueItems getUniqueItems() {
+        return uniqueItems;
+    }
+
+    public void setUniqueItems(UniqueItems uniqueItems) {
+        this.uniqueItems = uniqueItems;
+    }
 
     public Long getId() {
         return id;
@@ -52,19 +63,19 @@ public class Adversary {
         this.hitPoints = hitPoints;
     }
 
-    public Long getDamageTaken() {
+    public Integer getDamageTaken() {
         return damageTaken;
     }
 
-    public void setDamageTaken(Long damageTaken) {
+    public void setDamageTaken(Integer damageTaken) {
         this.damageTaken = damageTaken;
     }
 
-    public Long getAttackDamage() {
+    public Integer getAttackDamage() {
         return attackDamage;
     }
 
-    public void setAttackDamage(long attackDamage) {
+    public void setAttackDamage(Integer attackDamage) {
         this.attackDamage = attackDamage;
     }
 
@@ -73,3 +84,5 @@ public class Adversary {
     }
 
 }
+
+
